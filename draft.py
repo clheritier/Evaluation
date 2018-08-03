@@ -53,3 +53,22 @@ print(array_profiles)
   #          if F[j][1] == "ordinale":
   #              b[i][j] = 100
   #          else
+
+
+
+
+"""for i in range(0, p-1):
+        for j in range(0, n):
+            if F[j][1] == "ordinale":
+                B[i][j] = (100/p)+ (i*(100/p))
+            else :
+                delta = F[j][3]- F[j][2]
+                B[i][j] = (delta/p) + (i*(delta/p))
+
+        for j in range (0,n):
+            if F[j][0] == 'minimize':
+                B[i][j]= B[i][j]*(-1)"""
+
+for j in range(0, n):
+    if F[j][0] == 'minimize':
+        B[i][j] = B[i][j] * (-1)

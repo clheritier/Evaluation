@@ -1,5 +1,6 @@
 """ functions_contribution module defines usefull functions to compution criteria contribution (determine thrsholds, argmin etc.  """
 
+import os
 import numpy as np
 
 
@@ -12,7 +13,7 @@ def function_lambda_abr(cut_level, dj_abr, C_abr):
     return (lambda_abr)
 
 
-def contribution_subset(lambda_, gamma_, vec):
+def contribution_subset(lambda_, beta_, vec):
     import itertools
 
     '''
@@ -28,12 +29,9 @@ def contribution_subset(lambda_, gamma_, vec):
     author: sebastien.harispe@mines-ales.fr
     '''
 
-    # lambda_ = 0.93
-    # beta_ = 0.8
 
     threshold = lambda_ * beta_
 
-    # vec = [0.03, 0.46, 0.17, 0.22, 0.038, 0.006, 0.04, 0.03]
 
     print("Computing best subsets")
     print("lambda: ", lambda_)
@@ -70,14 +68,26 @@ def contribution_subset(lambda_, gamma_, vec):
     print("Number of solutions: ", len(solutions))
 
 
+
 ###Test###
 if __name__ == "__main__":
     cut_level = 0.93
+
     dj = [0., 0., 0., 0., 0., 0., 0., 0.]
     C = 0.9914614459853601
 
     threshold = function_lambda_abr(cut_level, dj, C)
     print(threshold)
+
+    gamma_ = 0.12
+    beta_ = 0.8
+    lambda_ = 0.93
+    vecteur_contribution= [0.03, 0.46, 0.17, 0.22, 0.038, 0.006, 0.04, 0.03]
+
+    I=contribution_subset(lambda_,beta_,vecteur_contribution)
+
+
+    os.system("pause")
 
 # lambda_ = 0.93
 # beta_ = 0.88/0.93

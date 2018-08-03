@@ -24,16 +24,18 @@ def profiles_approximation(p,F,n):
     for i in range(0, p-1):
         for j in range(0, n):
             if F[j][1] == "ordinale":
-                B[i][j] = (100/p)+ (i*(100/p))
-            else :
-                delta = F[j][3]- F[j][2]
-                B[i][j] = (delta/p) + (i*(delta/p))
+                if F[j][0] == 'minimize':
+                    B[i][j] = -100+((100/p)+ (i*(100/p)))
+                else:
+                    B[i][j] = (100/p)+ (i*(100/p))
+            else:
+                delta = F[j][3] - F[j][2]
+                if F[j][0] == 'minimize':
+                    B[i][j] = ((-1)*delta)+((delta / p) + (i * (delta / p)))
+                else:
+                    B[i][j] = (delta / p) + (i * (delta / p))
 
-        for j in range (0,n):
-            if F[j][0] == 'minimize':
-                B[i][j]= B[i][j]*(-1)
-
-    return(B)
+    return B
 
 
 
@@ -61,7 +63,7 @@ if __name__ == "__main__":
     F = np.array([['maximize', 'continue', 50, 300], ['maximize', 'ordinale', 6], ['minimize', 'continue', 0, 20],
                   ['minimize', 'ordinale', 4]], dtype=object)
 
-    p_categories = 3
+    p_categories = 4
 
 
     B= profiles_approximation(p_categories,F,n)

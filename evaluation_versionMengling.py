@@ -32,7 +32,7 @@ F = np.array([['maximize', 'continue',50,300 ],['maximize', 'ordinale',6 ],['min
 
 ### ELECTRE PARAMETERS
 
-p = 3                                       #p : nb of predefined categories. Fixed here
+p = 4                                       #p : nb of predefined categories. Fixed here
 w = np.random.random(n)                     #w = weight vector. Normally supposed to be inferred, here randomly generated   valeurs comprises entre [0,1[, pas normalisées, elles le sont après
 cut_level = random.uniform(0.5, 1)          #cut_level : cutting level lambda. Normally supposed to be inferred, here randomly generated " "veleur entre [0,1[ exclus ?
 
@@ -67,8 +67,8 @@ print(
         'Poids : \n',w,'\n',
         '#categories :',p,'\n',
         'Profils :\n',b,'\n',
-        'Seuils preference :\n',qb,'\n',
-        'Seuils indifference :\n',pb,'\n',
+        'Seuils indifference :\n',qb,'\n',
+        'Seuils preference :\n',pb,'\n',
         'Seuils veto (independant de g(bh)) :\n',v,'\n',
         'Seuil de coupe :\n',cut_level,'\n',
         'Score de alternative à evaluer (brut):\n',a,'\n'
@@ -118,4 +118,18 @@ else:
     # , et par defaut assigne a la moins bonne des cate c0
 
 ### 3| Contribution
+
+#/!\ if r != -1: # si surclasse profils b0 avec pessimitic procedure, il faudra regarder pourquoi b1Sa
+
+cj_abr = ab[r][0]*w/np.sum(w)
+lambda_abr = function_lambda_abr(cut_level, ab[r][2] , ab[r][1])
+
+gamma_ = ab[r][1] / n
+print("\n Individual contributions c{j}(a,br): \n c{j}(a,b",r+1,")=",cj_abr)
+print("\n The cutting level lambda =", cut_level)
+print(" Threshold lambda(a,br) = ",lambda_abr)
+print("Seuil gamma =",gamma_)
+
+
+
 
